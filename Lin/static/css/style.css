@@ -1,0 +1,16 @@
+h1 {
+  border: 2px #eee solid;
+  color: brown;
+  text-align: center;
+  padding: 10px;
+  
+}
+
+div {
+  word-wrap: break-word;
+  /* border: 12px;
+  padding: 20px; */
+}
+
+
+
