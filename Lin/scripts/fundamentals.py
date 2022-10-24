@@ -3,18 +3,17 @@ import pandas as pd
 import scripts.plotlylayout as ply
 
 
+
 def get_dividends(ticker):
 
     stock = yf.Ticker(ticker)
 
     ## Dividends
-    dividends = stock.get_dividends()
-    dividends = pd.DataFrame(dividends)
-    dividends = dividends.reset_index()
-    dividends["year"] = dividends["Date"].dt.year
-    dividends = dividends.groupby("year")["Dividends"].sum()
-    dividends = dividends.to_frame()
-    dividends = dividends.reset_index()
+
+    dividends = stock.history()['Dividends']
+    dividends = pd.DataFrame(dividends).reset_index()
+    dividends = dividends.loc[dividends['Dividends']>0]
+    dividends
 
     return ply.create_plotly_bar(dividends)
 
@@ -50,9 +49,3 @@ def get_AL(ticker):
 
     return ply.create_plotly_pie(AL)  ## Date is latest to past 
 
-
-
-
-
-# if __name__ == '__main__':
-#     get_dividends("AAPL")

@@ -1,0 +1,28 @@
+
+<body>
+    {% extends 'base.html' %}
+
+    {% block content %}
+        <div class="row">
+            {% for stock in stocks %}
+            <div id= flex class="col-md-3 mt-4 ";>
+                <div class="stockdetails">
+                        <p>StockCode : {{stock.StockCode}}</p>
+                        <p>Price : ${{ stock.Price}}</p> 
+                        <p>52 Weeks High: ${{stock.Weeks52High}}</p>
+                        <p>52 Weeks Low : ${{stock.Weeks52Low}}</p>
+                        <p>Last Searched Date : {{stock.LastSearchedDate}}</p>
+                        <form style= display:inline method="POST" action="{{ url_for('delete', id=stock['_id']) }}" >
+                            <input type="submit" value="Delete"
+                                   onclick="return confirm('Are you sure you want to delete this entry?')"></form>
+                        <form style=display:inline method="POST" action="{{ url_for('search', checkstock=stock.StockCode) }}">
+                            <input type="submit" value="Have A Look" > 
+                        </form>
+                    </div>
+                </div>       
+            {% endfor %}
+        </div>
+    {% endblock %}
+</body>
+</html>
+

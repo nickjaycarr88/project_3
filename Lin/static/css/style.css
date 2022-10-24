@@ -1,16 +1,24 @@
-h1 {
-  border: 2px #eee solid;
-  color: brown;
-  text-align: center;
-  padding: 10px;
-  
+.stockdetails{
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-right: 1px;
+  margin-left: 1px;
+  padding: 15px;
+  box-shadow: 10px 10px 5px rgb(69, 65, 65); 
+  background-color: rgb(129, 192, 219);
 }
 
-div {
-  word-wrap: break-word;
-  /* border: 12px;
-  padding: 20px; */
+.jumboText {
+  font-weight: bold;
+  color: navy;
+  font-size: 70;
+  }
+
+#backgroundColor{
+  margin-top: 3px;
+  margin-bottom: 3px;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.2);
+  color: #0A0A0A;
+
 }
-
-
-

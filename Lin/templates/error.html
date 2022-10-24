@@ -1,0 +1,24 @@
+
+<body>
+    {% extends 'base.html' %}
+    {% block content %}
+    
+    <div class="row">
+        <div class="col-md-12 jumbotron text-center mt-5">
+          <h1 class="jumboText" >Whoops! 404 Error!</h1>
+          <p>Sorry! Seems Yahoo Finance Webside Does Not Have Enough Data To Display The Dashboard</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 jumbotron text-center">
+            <form action="dashboard">
+                <label for="shortcode">Maybe Try To Search Another Australian Stock</label>
+                <input type="text" name="stockcode" value="" required>
+                <input type="submit" value="Submit">   
+            </form> 
+        </div> 
+    <div class="row">
+    {% endblock %}
+</body>
+</html>

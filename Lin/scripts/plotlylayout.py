@@ -11,13 +11,13 @@ import datetime as dt
 def create_plotly_bar(data):
 
     fig_dividend = px.bar(data,
-                  x="year",
+                  x="Date",
                   y="Dividends",
                   title="Dividends",
-                  barmode='group')
+                  barmode='group'
+                  )
    
-   
-
+    fig_dividend.update_layout(title_font=dict(color='navy',family = 'Arial Bold',size=26),yaxis_tickprefix='$')
     return fig_dividend
 
 def create_plotly_line(data):
@@ -25,9 +25,10 @@ def create_plotly_line(data):
     fig_cash = px.line(data,
                   x="date",
                   y="Cash",
-                  title="Cash")
+                  title="Cash"
+                    )
     
-   
+    fig_cash.update_layout(title_font=dict(color='navy',family = 'Arial Bold',size=26),yaxis_tickprefix='$')
 
     return fig_cash
 
@@ -55,7 +56,7 @@ def create_plotly_pie(data):
     fig_AL.add_trace(go.Pie(labels=labels, values= AL3, scalegroup='one'), 1, 3)
     fig_AL.add_trace(go.Pie(labels=labels, values= AL4, scalegroup='one'), 1, 4)
 
-    fig_AL.update_layout(title_text='Asset/Liabilities(Based On Amount)',paper_bgcolor="LightSteelBlue")
+    fig_AL.update_layout(title_text='Asset/Liabilities(Based On Amount)' ,title_font=dict(color='navy',family = 'Arial Bold',size=26 ))
 
     return fig_AL
 
@@ -65,36 +66,23 @@ def create_plotly_hp(ticker):
 
 
     stock = yf.Ticker(ticker)
-   
-
-    Y1 = dt.datetime.now() - dt.timedelta(days=365)
-    M6 = dt.datetime.now() - dt.timedelta(days=180)
-    M3 = dt.datetime.now() - dt.timedelta(days=90)
-    Y3 = dt.datetime.now() - dt.timedelta(days=365*3)
-    Y5 = dt.datetime.now() - dt.timedelta(days=365*5)
-
-    nowDate = dt.datetime.now().date()
     
-    hist3M = stock.history(start=M3, end=nowDate)
+    hist3M = stock.history(period='3mo')
     hist3M= hist3M[['Close']].reset_index() 
 
-    hist6M = stock.history(start=M6, end=nowDate)
+    hist6M = stock.history(period='6mo')
     hist6M= hist6M[['Close']].reset_index() 
     
-    hist1Y = stock.history(start=Y1, end=nowDate)
+    hist1Y = stock.history(period='1y')
     hist1Y= hist1Y[['Close']].reset_index() 
     
-    hist3Y= stock.history(start=Y3, end=nowDate)
+    hist3Y= stock.history(period='3y')
     hist3Y= hist3Y[['Close']].reset_index() 
 
-    hist5Y = stock.history(start=Y5, end=nowDate)
+    hist5Y = stock.history(period='5y')
     hist5Y= hist5Y[['Close']].reset_index() 
     
-    
-    # fig_histPrice = px.line(data,
-    #                 x="Date",
-    #                 y="Close",
-    #                 title="Historic Price") 
+
 
     # Initialize figure
     fig_histPrice = go.Figure()
@@ -155,6 +143,6 @@ def create_plotly_hp(ticker):
             )
         ])
 
-    fig_histPrice.update_layout(title_text="Historic Price")
+    fig_histPrice.update_layout(title_text="Historic Price", title_font=dict(color='navy',family = 'Arial Bold',size=26), yaxis_tickprefix='$' )
 
     return fig_histPrice
