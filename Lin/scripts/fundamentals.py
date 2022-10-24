@@ -10,7 +10,7 @@ def get_dividends(ticker):
 
     ## Dividends
 
-    dividends = stock.history()['Dividends']
+    dividends = stock.history(period='max')['Dividends']
     dividends = pd.DataFrame(dividends).reset_index()
     dividends = dividends.loc[dividends['Dividends']>0]
     dividends
