@@ -1,6 +1,6 @@
 # Stock Insights
 
-![alt text]()
+![alt text](https://github.com/LynHJ/FlaskApp-StockInsights/blob/77964ff22983ce33abcf446899d5c2d7bde6af41/Resources/NavBar.png)
 ## Background
 
 Welcome to StockInsights. Your one stop shop for all things stock related. Our aim is to keep you up to date with the latest news and relevant information of your searched company to help you make the best educated financial decision.  
@@ -9,22 +9,39 @@ Welcome to StockInsights. Your one stop shop for all things stock related. Our a
 
 ### HOW TO USE?
 
-At first glance of our website you are greeted with a word cloud which contains the most searched words of the past seven days in relation to the Australian markets. This is designed to give you ideas about which company or industry you would like to research.   
-<p align="center"><img src='https://github.com/LynHJ/FlaskApp-StockInsights/blob/3b5bab0d90dccd657bd2f3a60d95c210f959f64a/Resources/HomePage.png' width = 80% ></p>    
-Once you have decided which company to search, simply enter it into the search bar. We then return the price of the stock and it’s increase or decrease in price since the previous day's closing price, the historic pirce which can be viewed from three months to five years as well as a detailed description of the company. Below the description is a view of the assets and liabilities for the past four years which change in size in accordance to the increase or decrease of the value of the business.    
-<p align="center"><img src='https://github.com/LynHJ/FlaskApp-StockInsights/blob/3b5bab0d90dccd657bd2f3a60d95c210f959f64a/Resources/DashBoard.png' width = 50% ></p>   
-If you would like to keep your eye on this stock, simply click the <button>Add To My List</button>. This saves the searched stock in your <strong>“My List”</strong> menu. It is saved there for future reference, containing the price of when it was added, as well as the date.    
-<p align="center"><img src='https://github.com/LynHJ/FlaskApp-StockInsights/blob/3b5bab0d90dccd657bd2f3a60d95c210f959f64a/Resources/MyList.png' width = 80% ></p>    
+<p align="center"><img src='https://github.com/LynHJ/FlaskApp-StockInsights/blob/11561a35640147bd8733131b54bc900e8b3a8b3c/Resources/FlaskStructure.png' width = 80% ></p>    
+
+At first glance of our website you are greeted with a word cloud which contains the most searched words of the past seven days in relation to the Australian markets. This is designed to give you ideas about which company or industry you would like to research.    
+ 
+<p align="center"><img src='https://github.com/LynHJ/FlaskApp-StockInsights/blob/77964ff22983ce33abcf446899d5c2d7bde6af41/Resources/HomePage.png' width = 80% ></p> 
+   
+Once you have decided which company to search, simply enter it into the search bar. We then return the price of the stock and it’s increase or decrease in price since the previous day's closing price, the historic pirce which can be viewed from three months to five years as well as a detailed description of the company. Below the description is a view of the assets and liabilities for the past four years which change in size in accordance to the increase or decrease of the value of the business.  
+   
+<img src='https://github.com/LynHJ/FlaskApp-StockInsights/blob/77964ff22983ce33abcf446899d5c2d7bde6af41/Resources/DashBoard2.png' ><img src='https://github.com/LynHJ/FlaskApp-StockInsights/blob/77964ff22983ce33abcf446899d5c2d7bde6af41/Resources/DashBoard1.png'>  
+       
+If you would like to keep your eye on this stock, simply click the <code>Add To My List</code>. This saves the searched stock in your <strong>“My List”</strong> menu. It is saved there for future reference, containing the price of when it was added, as well as the date.  
+     
+<p align="center"><img src='https://github.com/LynHJ/FlaskApp-StockInsights/blob/77964ff22983ce33abcf446899d5c2d7bde6af41/Resources/MyList.png' width = 80% ></p>       
 
 ### WHO ARE WE?
-StockInsights was created by three budding data analysts with a background in finance and a keen interest in the movements of the markets.  
-Lin is a multi-lingual analyst with a great thirst for financial and analytical knowledge. When he isn’t buried deep in code, he explores the other side of his mind by creating culinary oriental delights.   
-Rajiv’s strong IT background, paired with his love of cryptocurrency has moulded him into an analyst with a strong eye for detail.    
-Nick has spent the past ten years in international education, where he was able to use his love of teaching and exploring cultures into a profession. It is his love of problem solving and numbers has led him down the data analytics path.    
-    
 
+StockInsights was created by three budding data analysts with a background in finance and a keen interest in the movements of the markets.  
+   
+Lin is a multi-lingual analyst with a great thirst for financial and analytical knowledge. When he isn’t buried deep in code, he explores the other side of his mind by creating culinary oriental delights.  
+ 
+Rajiv’s strong IT background, paired with his love of cryptocurrency has moulded him into an analyst with a strong eye for detail.  
+     
+Nick has spent the past ten years in international education, where he was able to use his love of teaching and exploring cultures into a profession. It is his love of problem solving and numbers has led him down the data analytics path.     
+    
 ### Summary: 
 
+This group project has been a great venture for us all, as it has allowed us to revise and put into action our newly gained data analytic skills which we have precured over the past few months. It has allowed us to find our strengths and weaknesses within all the new languages and libraries that we have learnt, which then allowed us to turn to each other and ask/ give support and guidance.  
+
+We believe that we have filled in many gaps of knowledge needed to make us better data analysts, as well as making us better collaborators within a group environment.  
+
+In this project, we encountered many coding-aspect issues. For example, one of the functions in javascript that got an error would terminate the execution of another function. We then tested both of the functions individually and ended out with no error. Therefore, we came up with an idea by putting two functions into two javascript files. Another example is that we realise python libraries have their own limitations. At that time When we were building up a Flask app, it got an error even though we had run through all the codes in the jupyter notebook successfully before implementing scripts into the Flask app. Then we knew that we might not get data when we use yfinanace - python library for sourcing stock's historical data.  
+
+Overall, this team project boosts us to another level no matter our data analytic skills or the skill of critical thinking.  
 
 
 ## Content:
@@ -33,6 +50,7 @@ Project
 ├── README.md
 ├── Resources
 │   ├── DashBoard.png
+│   ├── FlaskStructure.png
 │   ├── HomePage.png
 │   ├── MyList.png
 │   └── wordCloudBase.png
@@ -62,6 +80,10 @@ Project
     ├── mylist.html
     └── stockholder.html
 ```
+
+## Installation
+
+pip install -r requirements.txt
 
 
 ## Reference
