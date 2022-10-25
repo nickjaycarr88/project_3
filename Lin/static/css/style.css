@@ -5,7 +5,13 @@
   margin-left: 1px;
   padding: 15px;
   box-shadow: 10px 10px 5px rgb(69, 65, 65); 
-  background-color: rgb(129, 192, 219);
+  background-color: rgba(240,248,255, 1);
+}
+
+.style{
+  color:navy;
+  font-weight: 900;
+  font-size: 1.5em;
 }
 
 .jumboText {
@@ -18,7 +24,55 @@
   margin-top: 3px;
   margin-bottom: 3px;
   padding: 15px;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.3);
   color: #0A0A0A;
 
 }
+
+#bc{
+  background-color:	rgba(240,248,255, 0.5);
+  margin-top: 3px;
+  margin-bottom: 3px;
+  padding: 15px;
+}
+
+#bc1{
+  background-color:	rgba(240,248,255, 0.8);
+  margin-top: 25px;
+  margin-bottom: 5px;
+  padding: 15px;
+}
+
+
+
+/* Downward for Anime.js */
+.ml1 {
+  font-weight: 900;
+  font-size: 1.5em;
+}
+
+.ml1 .letter {
+  display: inline-block;
+  line-height: 1em;
+}
+
+.ml1 .text-wrapper {
+  position: relative;
+  display: inline-block;
+  padding-top: 0.1em;
+  padding-right: 0.05em;
+  padding-bottom: 0.15em;
+}
+
+.ml1 .line {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background-color: black;
+  transform-origin: 0 0;
+}
+
+.ml1 .line1 { top: 0; }
+.ml1 .line2 { bottom: 0; }

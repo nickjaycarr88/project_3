@@ -1,31 +1,34 @@
 
 <body>
     {% extends 'base.html' %}
-    {% block content %}
     
-    <div class="row">
+    {% block content %}
+        
+        <div class="row">
 
-        <div class="col-md-5 mt-4" >
-            <img src={{url}} alt="word cloud"/>
-            <h2>Stock Surfing</h2>
-            
-            <form action="dashboard">
-                <label for="shortcode">Enter Stock Code</label>
-                <input type="text" name="stockcode" value="" required>
-                <input type="submit" value="Submit">   
-            </form> 
-        </div>
+            <div class="col-md-5 mt-4" >
+                <img src={{url}} alt="word cloud"/>  <!-- {{url}} is parsed from def index() in app.py -->
+                <h2 style="margin:15px ;">Stock Surfing</h2>
+                
+                <form action="dashboard">
+                    <label for="shortcode">Enter Stock Code</label>
+                    <input type="text" name="stockcode" value="" required>
+                    <input type="submit" value="Submit">   
+                </form> 
+            </div>
 
-        <div class="col-md-7 mt-4" id = 'backgroundColor'>
-            <h1>NEWS</h1> 
-            <ul>{% for post in posts %}
-                <a href='{{post["href"]}}' target="_blank"><li><h6>{{post.string}}</h6></li></a>
-                <hr>   
-                {% endfor %}
-            </ul>
+            <div class="col-md-7 mt-4" id ='bc1'>
+                <h1>NEWS</h1> 
+                <ul>{% for post in posts %} <!-- 'posts' is parsed from def index() in app.py -->
+                    <a href='{{post["href"]}}' target="_blank"><li><h6>{{post.string}}</h6></li></a>
+                    <hr>   
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
-    </div>
 
     {% endblock %}
+
+
 </body>
-</html>
+

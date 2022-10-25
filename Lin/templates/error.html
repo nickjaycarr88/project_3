@@ -12,13 +12,13 @@
 
     <div class="row">
         <div class="col-md-12 jumbotron text-center">
-            <form action="dashboard">
+             <form action="dashboard"> <!-- Create a form to allow user to search another austalian stock and direct to dashboard page-->
                 <label for="shortcode">Maybe Try To Search Another Australian Stock</label>
-                <input type="text" name="stockcode" value="" required>
+                <input type="text" name="stockcode" value="" required> <!-- 'stockcode' will be parsed to dashboard function and excuted -->
                 <input type="submit" value="Submit">   
             </form> 
         </div> 
     <div class="row">
     {% endblock %}
 </body>
-</html>
+

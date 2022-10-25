@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 import datetime as dt
 import pymongo 
 from bson.objectid import ObjectId
-from pandas_datareader import data
+
 
 
 
@@ -28,23 +28,23 @@ app = Flask(__name__)
 def index():
  
     # # url for scraping data from businesstodays news
-    url = "https://www.businesstoday.in/latest/economy"
+    newsurl = "https://www.businesstoday.in/latest/economy"
     
-    webpage = req.get(url)  # YOU CAN EVEN DIRECTLY PASTE THE URL IN THIS # HERE HTML PARSER IS ACTUALLY THE WHOLE HTML PAGE
+    webpage = req.get(newsurl)  # parse a request for scraping the url
     soup = bs(webpage.content, "lxml")
     results = soup.find_all('a',href=True)
     
-    posts=[]
+    posts=[] # Wiill be parsed to index.html
     
     for result in results:
       if(str(type(result.string)) == "<class 'bs4.element.NavigableString'>"
       and len(result.string) > 35):
   
         if len(posts)<10:
-            posts.append(result)
+            posts.append(result) 
 
     
-    # generate wordclooud
+    # Generate wordclooud
 
     pytrend = TrendReq(hl='en-US', tz=-480)  # initialise TrendReq
 
@@ -81,7 +81,7 @@ def index():
     plt.axis("off")
     plt.savefig(f'static/images/{nowDate}.png',bbox_inches='tight',pad_inches=0.0)
  
-    
+    # Using render_template method to target the webpage with given data
     return render_template('index.html', posts = posts, url = f'static/images/{nowDate}.png')
 
 
@@ -93,35 +93,32 @@ def about():
 def error():
     return render_template('error.html')
 
-
-
 @app.route('/dashboard')
 def dashboard():
     try:
-        stockcode1=request.args['stockcode']
+        stockcode1=request.args['stockcode'] # 'stockcode' is posted from index.html when users key in stock code and click "SUMMIT"
 
-        adjustedName = f'{stockcode1.upper()}.AX'
+        adjustedName = f'{stockcode1.upper()}.AX' #Standarize stock code to match yfinance requirement
 
         # dividend plot
-        dividend = funds.get_dividends(adjustedName)   ## This gets the data and create a plot
-
-        plotlyplot_dividend = json.dumps(dividend, cls=plotly.utils.PlotlyJSONEncoder)## To display the plot as html we have to put into a json format.
+        dividend = funds.get_dividends(adjustedName)   # Parsing 'adjustedName' to fundamentals.py, then plotlylayout.py, then return back
+        plotlyplot_dividend = json.dumps(dividend, cls=plotly.utils.PlotlyJSONEncoder) # To display the plot as html we have to put into a json format.
 
         #cash plot
-        cash = funds.get_cash(adjustedName)   ## This gets the data and create a plot
+        cash = funds.get_cash(adjustedName)  # Parsing 'adjustedName' to fundamentals.py, then plotlylayout.py, then return back
 
-        plotlyplot_cash = json.dumps(cash, cls=plotly.utils.PlotlyJSONEncoder)## To display the plot as html we have to put into a json format.
+        plotlyplot_cash = json.dumps(cash, cls=plotly.utils.PlotlyJSONEncoder) # To display the plot as html we have to put into a json format.
 
         # Asset/Liabilities plot
-        AL = funds.get_AL(adjustedName)   ## This gets the data and create a plot
+        AL = funds.get_AL(adjustedName)   # Parsing 'adjustedName' to fundamentals.py, then plotlylayout.py, then return back
 
-        plotlyplot_AL = json.dumps(AL, cls=plotly.utils.PlotlyJSONEncoder)## To display the plot as html we have to put into a json format.
+        plotlyplot_AL = json.dumps(AL, cls=plotly.utils.PlotlyJSONEncoder) # To display the plot as html we have to put into a json format.
         
     
         # Historic Price plot
-        histPrice = ply.create_plotly_hp(adjustedName)   ## This gets the data and create a plot
+        histPrice = ply.create_plotly_hp(adjustedName)   # Parsing 'adjustedName' to fundamentals.py, then plotlylayout.py, then return back
 
-        plotlyplot_histPrice = json.dumps(histPrice, cls=plotly.utils.PlotlyJSONEncoder)## To display the plot as html we have to put into a json format.
+        plotlyplot_histPrice = json.dumps(histPrice, cls=plotly.utils.PlotlyJSONEncoder) # To display the plot as html we have to put into a json format.
         
         
         # Stock Infomation
@@ -139,7 +136,7 @@ def dashboard():
 
         rate = round(((lastRecentPrice-perivousPrice)/perivousPrice*100),2)
 
-
+        # Using render_template method to target the webpage with given data
         return render_template('dashboard.html',adjustedName = adjustedName,
                                                 plotlyplot_dividend = plotlyplot_dividend, 
                                                 plotlyplot_cash = plotlyplot_cash, 
@@ -149,8 +146,42 @@ def dashboard():
                                                 lastRecentPrice = lastRecentPrice,
                                                 rate = rate)
     except:
+        # The dashboard has 5 parts of historic data
+        # If one of them of the stock which a user would like to search cannot be called from yfinance
+        # It will direct to error page and request the user to search another stock
         return render_template('error.html')
 
+@app.post('/<id>/addToList/')  
+def addToList(id):
+    
+    # Create a database in MongoDB
+    conn = 'mongodb://localhost:27017'
+
+    client = pymongo.MongoClient(conn) #Connect to MongoDB
+   
+    db = client.flask_db #Connect to flask_db
+
+    stocks = db.stocks 
+
+    # Calling data from yfianace about what we want to store in MongoDB
+    lastRecentPrice = yf.Ticker(id).history()['Close'][-1]
+
+    lastRecentPrice =round(lastRecentPrice,2) #round the price
+
+    stockPirce = yf.Ticker(id).history(period="1y")['Close'] #Get the past 1 year stock price
+
+    max52 =round(max(stockPirce),2)
+    
+    min52 =round(min(stockPirce),2)
+
+    nowDate = dt.datetime.now().strftime("%d/%m/%Y") # Parse time data type to string type to mark search day
+
+    stocks.insert_one({'StockCode': id, 'Price': lastRecentPrice, 'Weeks52High':max52, 'Weeks52Low':min52, 'LastSearchedDate': nowDate})
+
+    client.close()
+
+    # Stay at the same web page
+    return redirect(url_for('mylist'))
 
 
 @app.route('/mylist')
@@ -169,13 +200,12 @@ def mylist():
 
     client.close()
 
+    # Using render_template method to target the webpage with given data
     return render_template('mylist.html', stocks=all_stocks)
 
 
 
-# Delect stock user not interested
-
-@app.post('/<id>/delete/')
+@app.post('/<id>/delete/') # Delect stock user not interested
 def delete(id):
     
     conn = 'mongodb://localhost:27017'
@@ -187,39 +217,36 @@ def delete(id):
     stocks = db.stocks
 
     stocks.delete_one({"_id": ObjectId(id)})
-
+    # stay at the same page
     return redirect(url_for('mylist'))
 
 
 
-# Create search function let user follow listed stock's recently performance
-
-@app.post('/<checkstock>/search/')
+@app.post('/<checkstock>/search/')# Create search function let user follow listed stock's recently performance
 def search(checkstock):
 
-    
-    adjustedName =checkstock
+    adjustedName =checkstock #'checkstock' is parsed from 'have a look' event in mylist.html
 
     # dividend plot
-    dividend = funds.get_dividends(adjustedName)   ## This gets the data and create a plot
+    dividend = funds.get_dividends(adjustedName)  # Parsing 'adjustedName' to fundamentals.py, then plotlylayout.py, then return back
 
-    plotlyplot_dividend = json.dumps(dividend, cls=plotly.utils.PlotlyJSONEncoder)## To display the plot as html we have to put into a json format.
+    plotlyplot_dividend = json.dumps(dividend, cls=plotly.utils.PlotlyJSONEncoder) # To display the plot as html we have to put into a json format.
 
     #cash plot
-    cash = funds.get_cash(adjustedName)   ## This gets the data and create a plot
+    cash = funds.get_cash(adjustedName)  # Parsing 'adjustedName' to fundamentals.py, then plotlylayout.py, then return back
 
-    plotlyplot_cash = json.dumps(cash, cls=plotly.utils.PlotlyJSONEncoder)## To display the plot as html we have to put into a json format.
+    plotlyplot_cash = json.dumps(cash, cls=plotly.utils.PlotlyJSONEncoder) # To display the plot as html we have to put into a json format.
 
     # Asset/Liabilities plot
-    AL = funds.get_AL(adjustedName)   ## This gets the data and create a plot
+    AL = funds.get_AL(adjustedName) # Parsing 'adjustedName' to fundamentals.py, then plotlylayout.py, then return back
 
     plotlyplot_AL = json.dumps(AL, cls=plotly.utils.PlotlyJSONEncoder)## To display the plot as html we have to put into a json format.
     
    
     # Historic Price plot
-    histPrice = ply.create_plotly_hp(adjustedName)   ## This gets the data and create a plot
+    histPrice = ply.create_plotly_hp(adjustedName) # Parsing 'adjustedName' to fundamentals.py, then plotlylayout.py, then return back
 
-    plotlyplot_histPrice = json.dumps(histPrice, cls=plotly.utils.PlotlyJSONEncoder)## To display the plot as html we have to put into a json format.
+    plotlyplot_histPrice = json.dumps(histPrice, cls=plotly.utils.PlotlyJSONEncoder) # To display the plot as html we have to put into a json format.
     
     
     # Stock Infomation
@@ -237,7 +264,7 @@ def search(checkstock):
     perivousPrice  =round(perivousPrice ,2)
 
     rate = round(((lastRecentPrice-perivousPrice)/perivousPrice*100),2)
-
+    # Using render_template method to target the webpage with given data    
     return render_template('stockholder.html',adjustedName = adjustedName,
                                             plotlyplot_dividend = plotlyplot_dividend, 
                                             plotlyplot_cash = plotlyplot_cash, 
@@ -248,35 +275,5 @@ def search(checkstock):
                                             rate = rate)
     
     
-@app.post('/<id>/addToList/')  
-def addToList(id):
-    
-    conn = 'mongodb://localhost:27017'
-
-    client = pymongo.MongoClient(conn) #Connect to MongoDB
-   
-    db = client.flask_db #Connect to flask_db
-
-    stocks = db.stocks 
-
-    lastRecentPrice = yf.Ticker(id).history()['Close'][-1]
-
-    lastRecentPrice =round(lastRecentPrice,2) #round the price
-
-    stockPirce = yf.Ticker(id).history(period="1y")['Close'] #Get the past 1 year stock price
-
-    max52 =round(max(stockPirce),2)
-    
-    min52 =round(min(stockPirce),2)
-
-    nowDate = dt.datetime.now().strftime("%d/%m/%Y") # Parse time data type to string type to mark search day
-
-    stocks.insert_one({'StockCode': id, 'Price': lastRecentPrice, 'Weeks52High':max52, 'Weeks52Low':min52, 'LastSearchedDate': nowDate})
-
-    client.close()
-
-    return redirect(url_for('mylist'))
-
-
 if __name__ == '__main__':
     app.run(debug=True)

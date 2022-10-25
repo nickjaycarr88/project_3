@@ -1,11 +1,7 @@
-
-from unittest.util import three_way_cmp
 import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import yfinance as yf
-import datetime as dt
-
 
 
 def create_plotly_bar(data):
@@ -49,6 +45,7 @@ def create_plotly_pie(data):
 
     labels = ['Total Current Assets','Total Current Liabilities','Total Non-Current Assets','Total Non-Current Liabilities']
     specs = [[{'type':'domain'}, {'type':'domain'}, {'type':'domain'}, {'type':'domain'}]]
+    # Create a 1*4 subplots for comparing the past four years of companies' performances.
     fig_AL = make_subplots(rows=1, cols=4, specs=specs,subplot_titles = data.index.strftime("%Y/%m/%d"))
 
     fig_AL.add_trace(go.Pie(labels=labels, values= AL1, scalegroup='one'), 1, 1)
@@ -118,7 +115,7 @@ def create_plotly_hp(ticker):
                 visible=False,
                 name="5 Years"))  
 
-
+    # Create a drop down menu to let users to choose different time durations
     fig_histPrice.update_layout(
         updatemenus=[
             dict(
