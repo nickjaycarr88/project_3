@@ -9,7 +9,7 @@ Welcome to StockInsights. Your one stop shop for all things stock related. Our a
 
 ### HOW TO USE?
 
-<p align="center"><img src='https://github.com/LynHJ/FlaskApp-StockInsights/blob/11561a35640147bd8733131b54bc900e8b3a8b3c/Resources/FlaskStructure.png' width = 80% ></p>    
+<p align="center"><img src='https://github.com/LynHJ/FlaskApp-StockInsights/blob/85a9f1305472b60546d2cc7424b8d56c7cc08874/Resources/FlaskStructure.png' width = 80% ></p>    
 
 At first glance of our website you are greeted with a word cloud which contains the most searched words of the past seven days in relation to the Australian markets. This is designed to give you ideas about which company or industry you would like to research.    
  
@@ -33,7 +33,7 @@ Rajiv’s strong IT background, paired with his love of cryptocurrency has mould
      
 Nick has spent the past ten years in international education, where he was able to use his love of teaching and exploring cultures into a profession. It is his love of problem solving and numbers has led him down the data analytics path.     
     
-### Summary: 
+### Summary:
 
 This group project has been a great venture for us all, as it has allowed us to revise and put into action our newly gained data analytic skills which we have precured over the past few months. It has allowed us to find our strengths and weaknesses within all the new languages and libraries that we have learnt, which then allowed us to turn to each other and ask/ give support and guidance.  
 
