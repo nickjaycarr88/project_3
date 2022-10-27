@@ -50,12 +50,17 @@ In conclusion, we are very proud with our end result and the journey of ups and 
 Project  
 ├── README.md
 ├── Resources
-│   ├── DashBoard.png
+│   ├── DashBoard1.png
+│   ├── DashBoard2.png
 │   ├── FlaskStructure.png
 │   ├── HomePage.png
 │   ├── MyList.png
+│   ├── NavBar.png
 │   └── wordCloudBase.png
+├── StockInsights.pdf
+├── StockInsights.pptx
 ├── app.py
+├── proposal.docx
 ├── requirements.txt
 ├── scripts
 │   ├── fundamentals.py
@@ -69,17 +74,21 @@ Project
 │   │   ├── 2022-10-22.png
 │   │   ├── 2022-10-23.png
 │   │   ├── 2022-10-24.png
+│   │   ├── 2022-10-25.png
+│   │   ├── 2022-10-27.png
 │   │   └── bg.jpg
 │   └── js
+│       ├── anime.js
 │       └── app.js
-└── templates
-    ├── about.html
-    ├── base.html
-    ├── dashboard.html
+├── templates
+    ├── about.html
+    ├── base.html
+    ├── dashboard.html
     ├── error.html
     ├── index.html
     ├── mylist.html
     └── stockholder.html
+
 ```
 
 ## Installation

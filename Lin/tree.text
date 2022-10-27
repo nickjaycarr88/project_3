@@ -1,0 +1,47 @@
+.
+├── README.md
+├── Resources
+│   ├── DashBoard1.png
+│   ├── DashBoard2.png
+│   ├── FlaskStructure.png
+│   ├── HomePage.png
+│   ├── MyList.png
+│   ├── NavBar.png
+│   └── wordCloudBase.png
+├── StockInsights.pdf
+├── StockInsights.pptx
+├── app.py
+├── proposal.docx
+├── requirements.txt
+├── scripts
+│   ├── __pycache__
+│   │   ├── fundamentals.cpython-37.pyc
+│   │   └── plotlylayout.cpython-37.pyc
+│   ├── fundamentals.py
+│   └── plotlylayout.py
+├── static
+│   ├── css
+│   │   └── style.css
+│   ├── images
+│   │   ├── 2022-10-20.png
+│   │   ├── 2022-10-21.png
+│   │   ├── 2022-10-22.png
+│   │   ├── 2022-10-23.png
+│   │   ├── 2022-10-24.png
+│   │   ├── 2022-10-25.png
+│   │   ├── 2022-10-27.png
+│   │   └── bg.jpg
+│   └── js
+│       ├── anime.js
+│       └── app.js
+├── templates
+│   ├── about.html
+│   ├── base.html
+│   ├── dashboard.html
+│   ├── error.html
+│   ├── index.html
+│   ├── mylist.html
+│   └── stockholder.html
+└── tree.text
+
+8 directories, 36 files
