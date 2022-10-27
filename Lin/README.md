@@ -35,14 +35,15 @@ Nick has spent the past ten years in international education, where he was able 
     
 ### Summary:
 
-This group project has been a great venture for us all, as it has allowed us to revise and put into action our newly gained data analytic skills which we have precured over the past few months. It has allowed us to find our strengths and weaknesses within all the new languages and libraries that we have learnt, which then allowed us to turn to each other and ask/ give support and guidance.  
+This assignment has been a great venture for us all, as it has allowed us to revise and put into action our newly gained data analytic skills which we have precured over the past few months. It has allowed us to find our strengths and weaknesses within all the new languages and libraries that we have learnt, which then allowed us to turn to each other and ask/ give support and guidance.  
 
 We believe that we have filled in many gaps of knowledge needed to make us better data analysts, as well as making us better collaborators within a group environment.  
 
-In this project, we encountered many coding-aspect issues. For example, one of the functions in javascript that got an error would terminate the execution of another function. We then tested both of the functions individually and ended out with no error. Therefore, we came up with an idea by putting two functions into two javascript files. Another example is that we realise python libraries have their own limitations. At that time When we were building up a Flask app, it got an error even though we had run through all the codes in the jupyter notebook successfully before implementing scripts into the Flask app. Then we knew that we might not get data when we use yfinanace - python library for sourcing stock's historical data.  
+Of course many challenges were met along the way. Coordinating our schedules outside of class time was a challenge, as we all work full time, as well as other life commitments. There was also time pressure, as we had to review and, in some cases, relearn what we have studied to apply it to our assignment. This created a bit of a concern for us as we were not too sure if we were on the right track to deliver a completed final product.  
 
-Overall, this team project boosts us to another level no matter our data analytic skills or the skill of critical thinking.  
+In terms of the technical challenges, the main one was the continual errors in code we encountered and then having to find out where we went wrong and why. However, we know that these errors make us better at understanding the code and what syntax is required.  
 
+In conclusion, we are very proud with our end result and the journey of ups and downs we met along the way to get the desired functioning application. We definitely learnt a lot in terms of working in a team, putting our knowledge to the test and time managent.
 
 ## Content:
 ```
